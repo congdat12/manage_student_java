@@ -15,17 +15,22 @@ public class Controller {
 
     public void removeStudentById(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("input id");
+        System.out.println("Nhập ID:");
         int id = sc.nextInt();
-        for (Student st : arr){
-            if (st.getId() != id){
-                System.out.println("not found ID");
-            }else if(arr.size() <= 1){
-                System.out.println("not valid...please try again");
-            }
-            else {
+        boolean found = false;
+
+        for (Student st : arr) {
+            if (st.getId() == id) {
                 arr.remove(st);
+                found = true;
+                break;
             }
+        }
+
+        if (found) {
+            System.out.println("Sinh viên có ID " + id + " đã được xóa.");
+        } else {
+            System.out.println("Không tìm thấy sinh viên có ID " + id);
         }
     }
     public void showAll(){
@@ -79,6 +84,7 @@ public class Controller {
                     break;
                 case 2:
                     removeStudentById();
+                    showAll();
                     break;
                 case 3:
                     findStudentById();
